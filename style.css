@@ -1,0 +1,31 @@
+/* Flappy Kiro — style.css
+   Centres the canvas on a full-viewport background and removes
+   default body margin/padding (Requirement 1.1) */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1a2e; /* dark backdrop behind the canvas */
+}
+
+#gameCanvas {
+  display: block;
+  /* The canvas width/height are set programmatically by CanvasScaler;
+     CSS must not override those dimensions. */
+}

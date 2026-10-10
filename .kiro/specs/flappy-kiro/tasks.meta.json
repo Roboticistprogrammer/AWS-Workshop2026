@@ -1,0 +1,1221 @@
+{
+  "pbtResults": {
+    "2.3 Write property test for canvas aspect ratio invariant": {
+      "status": "passed",
+      "lastRunTimestamp": 1791656276389
+    },
+    "7.2 Write property test for input debounce rejecting rapid flap inputs": {
+      "status": "passed",
+      "lastRunTimestamp": 1791657390933
+    },
+    "10.2 Write property test for pipe dimensions": {
+      "status": "passed",
+      "lastRunTimestamp": 1791660577991
+    },
+    "10.4 Write property test for gap centre within safe bounds": {
+      "status": "passed",
+      "lastRunTimestamp": 1791660579306
+    },
+    "10.5 Write property test for active pipe count never exceeding 6": {
+      "status": "passed",
+      "lastRunTimestamp": 1791660580154
+    },
+    "10.7 Write property test for pipe scroll speed increases": {
+      "status": "passed",
+      "lastRunTimestamp": 1791660715728
+    },
+    "11.3 Write property test for 4 px inward hitbox margin": {
+      "status": "passed",
+      "lastRunTimestamp": 1791660819529
+    },
+    "11.4 Write property test for boundary collision at correct edges": {
+      "status": "passed",
+      "lastRunTimestamp": 1791660820474
+    },
+    "12.4 Write property test for high score always being max(S, H)": {
+      "status": "passed",
+      "lastRunTimestamp": 1791661072938
+    },
+    "12.5 Write property test for high score localStorage round-trip": {
+      "status": "passed",
+      "lastRunTimestamp": 1791661073985
+    },
+    "14.5 Write property test for game-over overlay always containing both scores": {
+      "status": "passed",
+      "lastRunTimestamp": 1791661309180
+    },
+    "14.6 Write property test for \"New Best!\" shown if and only if score exceeds previous high score": {
+      "status": "passed",
+      "lastRunTimestamp": 1791661310362
+    }
+  },
+  "executionHistory": {
+    "1.1 Create `index.html` with a single `<canvas id=\"gameCanvas\">` element, a `<script type=\"module\" src=\"game.js\">` tag, and a `<link>` to `style.css`": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624846706
+      },
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791625061821
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791625905048
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791625913798
+      }
+    ],
+    "1.2 Create `style.css` that centres the canvas on a full-viewport background and removes default body margin/padding": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624846891
+      },
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791625110039
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791625923101
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791625936118
+      }
+    ],
+    "1.3 Create `game.js` skeleton with named exports for all pure functions (so tests can import them) and a `typeof window !== 'undefined'` guard around `GameLoop` startup": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847038
+      },
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791625132605
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791655523634
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791655527767
+      }
+    ],
+    "1.4 Implement asset loading: fetch `assets/ghosty.png`, `assets/jump.wav`, `assets/game_over.wav` before the first frame; attach `onerror` handlers that set fallbacks (`ghost.sprite = null`, `AudioBuffer = null`) and log to console; start the game loop regardless of load success": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847194
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791655536704
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791655597786
+      }
+    ],
+    "2.1 Implement and export `CanvasScaler.resize(canvas, containerWidth)` — sets `canvas.width = min(containerWidth, 1280)`, `canvas.height = canvas.width * 0.75`, returns `{ scale, w, h }`; implement `CanvasScaler.toLogical(canvasCoord, scale)`": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847287
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791655541110
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791655602476
+      }
+    ],
+    "2.2 Wire a `window.resize` listener that calls `CanvasScaler.resize` and recalculates all element positions and sizes; call it once on page load": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847374
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791655606946
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656115254
+      }
+    ],
+    "3.1 Implement `GameLoop` class with `start()`, `stop()`, and `_tick(timestampMs)` methods; drive the loop with `requestAnimationFrame`; compute `dtFactor = deltaMs / 16.667`; clamp `deltaMs` to 50 ms if it exceeds 200 ms to prevent physics tunnelling": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847460
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791655611244
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656125138
+      }
+    ],
+    "4.1 Implement and export all `PhysicsEngine` pure functions:": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847536
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138147
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656291212
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656827379
+      }
+    ],
+    "5.1 Implement `createGhost()` factory returning the ghost data model (`x: 80, y: 180, vy: 0, rotation: 0, width: 32, height: 32, sprite: null`)": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847621
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138241
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656295474
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656832192
+      }
+    ],
+    "5.2 Implement idle sinusoidal bob in `GameStateManager` tick for `Idle_State` using `PhysicsEngine.bobOffset(idleTimeMs)` applied as a render-only vertical offset; accumulate `idleTimeMs` each tick": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847706
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138343
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656836965
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656895928
+      }
+    ],
+    "6.1 Implement `Renderer._drawBackground(ctx, canvas)` — light-blue filled rectangle covering full canvas with overlaid dark pencil-stroke lines for hand-drawn texture": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847790
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138416
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657227220
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657506256
+      }
+    ],
+    "6.2 Implement `Renderer._drawClouds(ctx, clouds)` — draw each cloud as an off-white, slightly rounded rectangle; clouds scroll at `speed: 0.5` px/tick (parallax); generate 3–6 clouds in the upper 60% of the canvas on init": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847878
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138496
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657233444
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657511280
+      }
+    ],
+    "6.3 Implement `Renderer._drawGhost(ctx, ghost, sprite)` — draw `ghosty.png` scaled to 32×32 logical px using `ctx.save/translate/rotate/drawImage/restore`; if `sprite` is null, draw a white filled circle of radius 16 px as fallback": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624847942
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138573
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657238940
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659031179
+      }
+    ],
+    "6.4 Implement `Renderer.draw(gameState, canvas, ctx)` wiring the draw order: Background → Clouds → Pipes (stub for now) → Ghost → HUD (stub) → Overlay (stub)": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848039
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138644
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657243788
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659035816
+      }
+    ],
+    "7.1 Implement `InputManager` class with `attach()` / `detach()` methods; register `keydown` (Space → FLAP; P/Esc → PAUSE_TOGGLE), `click` (→ FLAP), and `touchstart` (→ FLAP, `e.preventDefault()`) listeners on the canvas": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848158
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138725
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656841731
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657203151
+      }
+    ],
+    "8.1 Implement `GameStateManager` class with `handleAction(action)` and `tick(deltaMs)` methods; implement `_transitionTo(newState)` with all enter/exit side-effects:": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848258
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138808
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657248665
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657404703
+      }
+    ],
+    "8.2 Implement `tick(deltaMs)` routing: in `Playing_State`, apply gravity, clamp velocity, update position, compute rotation via `PhysicsEngine`; in `Idle_State`, advance `idleTimeMs`; in `Paused_State`, skip all updates; ignore FLAP actions in `Paused_State`": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848378
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138880
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659045813
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659252142
+      }
+    ],
+    "9. Checkpoint — core game loop running": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848473
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656138954
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659299032
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660327391
+      }
+    ],
+    "10.1 Implement `createPipe(x, gapCentreY, canvasH)` factory with `bodyWidth: 52`, `capWidth: 64`, `capHeight: 16`, `gapHeight: 150`, `scored: false`; implement `Renderer._drawPipes(ctx, pipes, canvas)` drawing dark-green body and lighter-green cap (cap 10–20% wider each side)": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848560
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139068
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660342559
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660395590
+      }
+    ],
+    "10.3 Implement pipe generation in `GameStateManager` tick: spawn a new pipe pair when horizontal distance between leading edges of consecutive pipes reaches 220 px; randomise `gapCentreY ∈ [150, canvasH − 150]`; cap active pipe list at 6; remove pipes when right edge reaches x = −64": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848610
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139142
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660402730
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660607374
+      }
+    ],
+    "10.6 Implement pipe scrolling at `pipeSpeed` px/tick (delta-time scaled); implement `PipeManager.computeSpeed(pipesPassed)` — returns `min(3 + floor(pipesPassed / 5) * 0.3, 6)`; trigger speed increase in `GameStateManager` when a multiple-of-5 pipe is passed": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848658
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139224
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660624156
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660729785
+      }
+    ],
+    "11.1 Implement and export `CollisionDetector.getHitbox(ghost)` — returns `{ x: ghost.x+4, y: ghost.y+4, w: ghost.width-8, h: ghost.height-8 }`; implement `CollisionDetector.checkPipes(ghost, pipes)` — AABB overlap between hitbox and each pipe body and cap; implement `CollisionDetector.checkBoundary(ghost, hudTop)` — returns true if `ghost.y < 0` or `ghost.y + ghost.height >= hudTop`": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848703
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139296
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660736684
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660846380
+      }
+    ],
+    "11.2 Wire collision checks into `GameStateManager.tick` during `Playing_State`; on positive result call `_transitionTo('Game_Over_State')`": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848740
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139386
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660853640
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660976294
+      }
+    ],
+    "12.1 Implement and export `ScoreManager.checkScoring(ghost, pipes, state)` — increments `state.score` by 1 when `ghost.cx >= pipe.cx` and `pipe.scored === false`; sets `pipe.scored = true` to prevent double-counting; call this in `GameStateManager.tick` during `Playing_State`": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848785
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139462
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660855105
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660976059
+      }
+    ],
+    "12.3 Implement `ScoreManager.onGameOver(state)` — sets `state.highScore = max(state.score, state.highScore)` and calls `saveHighScore`; implement `ScoreManager.saveHighScore(value)` and `ScoreManager.loadHighScore()` wrapping all `localStorage` calls in `try/catch` with in-memory fallback; use key `flappyKiroHighScore`; call `loadHighScore` at game init to seed `gameState.highScore`": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848824
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139533
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660992070
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661100554
+      }
+    ],
+    "13.1 Implement `AudioManager` class with `async init()` (creates `AudioContext`, decodes `jump.wav` and `game_over.wav` into `AudioBuffer`), `resumeIfSuspended()`, `playJump()`, and `playGameOver()`; replay sounds via `AudioBufferSourceNode`; no-op silently if buffer is null (asset load failure fallback)": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848868
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139604
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661113326
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661118866
+      }
+    ],
+    "13.2 Call `AudioManager.resumeIfSuspended()` on the first FLAP, PAUSE_TOGGLE, or RESTART action in `GameStateManager.handleAction`; pass a `shouldPlaySound` flag from `GameStateManager` to `playJump()` — skip playback if `ghost.vy === -8` before the flap is applied": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848907
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139680
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661125693
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661214776
+      }
+    ],
+    "14.1 Implement `Renderer._drawHUD(ctx, score, highScore, canvas)` — semi-transparent bar (opacity 40–70%) at canvas bottom; white horizontally-centred text `Score: {Score} | High: {High_Score}`": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848951
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139781
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661127612
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661216653
+      }
+    ],
+    "14.2 Implement `Renderer._drawMenuOverlay(ctx, highScore, canvas)` — display title \"Flappy Kiro\", current High_Score, and \"Press Space / Tap to Start\" prompt; shown in `Menu_State`": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624848989
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139859
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661129525
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661218610
+      }
+    ],
+    "14.3 Implement `Renderer._drawPausedOverlay(ctx, canvas)` — semi-transparent overlay with \"Paused\" heading and \"Press P / Esc to Resume\" instruction; shown in `Paused_State`": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624849035
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656139936
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661130898
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661219942
+      }
+    ],
+    "14.4 Implement `Renderer._drawGameOverOverlay(ctx, score, highScore, isNewBest, canvas)` — \"Game Over\" heading, final Score, current High_Score, \"New Best!\" indicator when `score > highScore` (determined before updating), and \"Press Space / Tap to Restart\" instruction; export a string-output mode for testing": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624849074
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656140018
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661132939
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661221680
+      }
+    ],
+    "15.1 Instantiate all managers (`InputManager`, `PhysicsEngine`, `ScoreManager`, `AudioManager`, `CanvasScaler`) and pass them into `GameStateManager`; wire `GameStateManager` and `Renderer` into `GameLoop._tick`; attach `InputManager` to canvas; call `ScoreManager.loadHighScore()` to seed initial state": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624849119
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656140099
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661230080
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661331070
+      }
+    ],
+    "15.2 Verify the complete state machine end-to-end: Menu_State on load → Idle_State on first input → Playing_State on first flap → Game_Over_State on collision → Idle_State on restart → Paused_State on P/Esc → back to Playing_State": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624849157
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656140161
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661336330
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661420582
+      }
+    ],
+    "16. Checkpoint — full game playable": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624849202
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656140198
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661424904
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661430448
+      }
+    ],
+    "17.1 Set up the test environment: create `test/` directory, install `fast-check` via npm for Node.js test running; create `test/game.test.js` importing named exports from `game.js`; each test file tags properties with `// Feature: flappy-kiro, Property N: <title>`; configure minimum 100 iterations per property": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624849241
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656140237
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661436337
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661442059
+      }
+    ],
+    "18.1 Write unit tests covering the remaining example-classified acceptance criteria:": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624849288
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656140278
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661474423
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661619315
+      }
+    ],
+    "19. Final checkpoint — all tests pass": [
+      {
+        "executionId": "b4da89f2-cf08-4d2b-ab2f-94a1640f9e9e",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791624849324
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656140317
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661630446
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661634636
+      }
+    ],
+    "1. Project scaffolding and asset loading": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791655597852
+      }
+    ],
+    "2. CanvasScaler": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656115351
+      }
+    ],
+    "3. GameLoop": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656125223
+      }
+    ],
+    "2.3 Write property test for canvas aspect ratio invariant": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656160556
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656286834
+      }
+    ],
+    "4. PhysicsEngine pure functions": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656827507
+      }
+    ],
+    "5. Ghost entity and idle animation": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791656896013
+      }
+    ],
+    "7. InputManager": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657203319
+      }
+    ],
+    "7.2 Write property test for input debounce rejecting rapid flap inputs": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657222047
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791657400226
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659336182
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660174354
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660323006
+      }
+    ],
+    "6. Renderer — background, clouds, and ghost": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659035930
+      }
+    ],
+    "8. GameStateManager and state machine": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659252223
+      }
+    ],
+    "8.3 Write property test for restart producing clean Idle_State": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659256601
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659261725
+      }
+    ],
+    "8.4 Write property test for pause/resume state round-trip": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659267035
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659271391
+      }
+    ],
+    "8.5 Write property test for flap ignored while paused": [
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659275949
+      },
+      {
+        "executionId": "a25f1348-96ac-4e05-b707-36a5e3ae3aee",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791659280235
+      }
+    ],
+    "10.2 Write property test for pipe dimensions": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660400602
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660605635
+      }
+    ],
+    "10.4 Write property test for gap centre within safe bounds": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660611692
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660616833
+      }
+    ],
+    "10.5 Write property test for active pipe count never exceeding 6": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660612554
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660617699
+      }
+    ],
+    "10.7 Write property test for pipe scroll speed increases": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660624921
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660730510
+      }
+    ],
+    "10. Pipe entity and PipeManager": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660729905
+      }
+    ],
+    "11.3 Write property test for 4 px inward hitbox margin": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660738084
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660847339
+      }
+    ],
+    "11.4 Write property test for boundary collision at correct edges": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660739151
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660848293
+      }
+    ],
+    "11. Collision detection": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660976408
+      }
+    ],
+    "12.2 Write property test for score incrementing exactly once per pipe crossing": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660980703
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660985810
+      }
+    ],
+    "12.5 Write property test for high score localStorage round-trip": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660992976
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661102758
+      }
+    ],
+    "12.4 Write property test for high score always being max(S, H)": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791660993902
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661102191
+      }
+    ],
+    "12. ScoreManager": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661100645
+      }
+    ],
+    "13. AudioManager": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661214857
+      }
+    ],
+    "14. Renderer overlays and HUD": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661221792
+      }
+    ],
+    "14.5 Write property test for game-over overlay always containing both scores": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661226774
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661327888
+      }
+    ],
+    "14.6 Write property test for \"New Best!\" shown if and only if score exceeds previous high score": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661228178
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661329280
+      }
+    ],
+    "15. Full integration and wiring": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661420700
+      }
+    ],
+    "17. Property-based test suite (fast-check)": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661442130
+      }
+    ],
+    "17.2 Verify all 22 property tests (Properties 1–22) pass with fast-check at 100+ iterations each — these are the optional sub-tasks already written in tasks 2.3, 4.2–4.7, 7.2, 8.3–8.5, 10.2, 10.4, 10.5, 10.7, 11.3, 11.4, 12.2, 12.4, 12.5, 14.5, 14.6": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661444000
+      },
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661473224
+      }
+    ],
+    "18. Example-based unit tests": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661619397
+      }
+    ],
+    "4.2 Write property test for ghost rotation after flap": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661649658
+      }
+    ],
+    "4.3 Write property test for ghost rotation while falling": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661650610
+      }
+    ],
+    "4.4 Write property test for gravity with delta-time": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661652003
+      }
+    ],
+    "4.5 Write property test for flap setting vy to exactly −8": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661652945
+      }
+    ],
+    "4.6 Write property test for position update scaling with delta-time": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661654331
+      }
+    ],
+    "4.7 Write property test for idle bob amplitude bounds": [
+      {
+        "executionId": "35b466d5-8f92-4284-b206-b275946e0664",
+        "chatSessionId": "sess_9c0b1299-936e-4a2b-8c8e-8bb9cdfef2de",
+        "timestamp": 1791661655038
+      }
+    ]
+  }
+}

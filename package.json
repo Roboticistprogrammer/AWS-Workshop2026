@@ -1,0 +1,25 @@
+{
+  "name": "kiro-introduction",
+  "version": "1.0.0",
+  "description": "Initial folder containing support resources for the Flappy Kiro game.",
+  "main": "game.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roboticistprogrammer/AWS-Workshop2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Roboticistprogrammer/AWS-Workshop2026/issues"
+  },
+  "homepage": "https://github.com/Roboticistprogrammer/AWS-Workshop2026#readme",
+  "devDependencies": {
+    "fast-check": "^4.10.2",
+    "jest": "^30.5.2"
+  }
+}
